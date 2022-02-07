@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div
+  class="flex grow overflow-x-auto bg-blue-100"
+  style="height: calc(100vh - 77px)"
+>
+  <div class="flex grow m-24 gap-16" cdkDropListGroup>
+    <!-- Ideas contianer -->
+    <div
+      *ngFor="let column of board.columns"
+      class="flex flex-col grow basis-0 bg-white bg-opacity-50 rounded-sm p-8"
+    >
+      <div class="text-2xl font-extrabold uppercase mb-16">
+        {{ column.name }}
+      </div>
+      <div
+        cdkDropList
+        [cdkDropListData]="column.tasks"
+        (cdkDropListDropped)="drop($event)"
+        class="task-container grow overflow-y-auto"
+      >
+        <div
+          *ngFor="let item of column.tasks"
+          cdkDrag
+          class="task flex px-4 bg-white bg-opacity-100 py-4 border-b-white rounded mb-4 shadow-md"
+        >
+          {{ item }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
